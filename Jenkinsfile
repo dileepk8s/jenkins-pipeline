@@ -4,7 +4,7 @@ pipeline {
         stage ('build') {
             steps {
                 // sample command for eccho first pipeline job//
-                echo  "hello this is build step"
+                echo  "hello this is build step modified by Dileep"
             }
         }
         stage ('test') {
