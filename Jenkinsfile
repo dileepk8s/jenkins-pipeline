@@ -8,6 +8,9 @@ pipeline{
             }
         }
         stage ('secondstage'){
+            agent {
+                label 'apps-slave'
+            }
             steps {
                 echo 'hello printing hostname where this stage excuting'
                 sh 'hostname -i'
