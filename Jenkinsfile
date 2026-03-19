@@ -1,15 +1,15 @@
-pipeline {
-    agent {
-        label 'apps-slave'
-    }
+pipeline{
+    agent any
     stages {
-        stage ('build') {
+        stage ('firststage') {
             steps {
-                echo "hello-world"
+                echo 'hello pringing hostname where the stage excuting'
+                sh 'hostname -i'
             }
         }
-        stage ('test') {
+        stage ('secondstage'){
             steps {
+                echo 'hello printing hostname where this stage excuting'
                 sh 'hostname -i'
             }
         }
