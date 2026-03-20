@@ -14,7 +14,7 @@ pipeline {
                     //logic 
                     // varible definition
                     // def variable = "value"
-                    def course = 'k8s'
+                    def course = 'docker'
                     // there are various way to call variable.
                     if (course == "k8s")
                     println("thanks for enrolling into ${course} course")
