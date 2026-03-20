@@ -1,13 +1,20 @@
 pipeline {
     agent any
     tools {
-        // this name should match the name configured in tools section
         maven 'maven-3.8.9'
     }
     stages {
-        stage ('build') {
+        stage ('mavendefault') {
             steps {
-                echo "this is maven verification"
+                echo "welcome to maven section, this is default java section"
+            }
+        }
+        stage ('custommaven') {
+            tools{
+                jdk 'jdk-17'
+            }
+            steps{
+                echo "welcome to maven this is custom java section"
                 sh 'mvn --version'
             }
         }
