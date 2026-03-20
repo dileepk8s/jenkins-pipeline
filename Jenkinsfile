@@ -16,7 +16,7 @@ pipeline {
                     // def variable = "value"
                     def course = 'docker'
                     // there are various way to call variable.
-                    if (course == "docker")
+                    if (course == "k8s")
                     println("thanks for enrolling into ${course} course")
                     else 
                     println ("do join for k8s")
