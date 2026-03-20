@@ -1,4 +1,4 @@
-pipeling {
+pipeline {
     agent any
     tools {
         // this name should match the name configured in tools section
