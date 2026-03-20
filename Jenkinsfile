@@ -1,19 +1,27 @@
-pipeline{
+pipeline {
     agent any
     stages {
-        stage ('firststage') {
+        stage ('build') {
             steps {
-                echo 'hello pringing hostname where the stage excuting'
+                //declarative
+                echo "this is a build stage"
                 sh 'hostname -i'
             }
         }
-        stage ('secondstage'){
-            agent {
-                label 'apps-slave'
-            }
+        stage ('groovrystage') {
             steps {
-                echo 'hello printing hostname where this stage excuting'
-                sh 'hostname -i'
+                script {
+                    //logic 
+                    // varible definition
+                    // def variable = "value"
+                    def course = 'k8s'
+                    // there are various way to call variable.
+                    if (course == "k8s")
+                    println("thanks for enrolling into ${course} course")
+                    else 
+                    println ("do join for ${course}")
+                
+                }
             }
         }
     }
