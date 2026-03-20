@@ -1,10 +1,13 @@
-pipeline {
-    agent any 
+pipeling {
+    agent any
+    tools {
+        // this name should match the name configured in tools section
+        maven 'maven-3.8.9'
+    }
     stages {
         stage ('build') {
             steps {
-                // verify the maven version
-                echo "welcome to maven section , verify the maven version"
+                echo "this is maven verification"
                 sh 'mvn --version'
             }
         }
