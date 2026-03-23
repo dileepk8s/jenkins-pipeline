@@ -1,21 +1,27 @@
 pipeline {
     agent any
-    tools {
-        maven 'maven-3.8.9'
-    }
     stages {
-        stage ('mavendefault') {
+        stage ('build') {
             steps {
-                echo "welcome to maven section, this is default java section"
+                //declarative
+                echo "this is a build stage"
+                sh 'hostname -i'
             }
         }
-        stage ('custommaven') {
-            tools{
-                jdk 'jdk-17'
-            }
-            steps{
-                echo "welcome to maven this is custom java section"
-                sh 'mvn --version'
+        stage ('groovrystage') {
+            steps {
+                script {
+                    //logic 
+                    // varible definition
+                    // def variable = "value"
+                    def course = 'k8s'
+                    // there are various way to call variable.
+                    if (course == "k8s")
+                    println("thanks for enrolling into ${course} course")
+                    else 
+                    println ("do join for ${course}")
+                
+                }
             }
         }
     }
