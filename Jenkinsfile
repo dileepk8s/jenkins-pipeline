@@ -1,16 +1,15 @@
-////thi pipeline for sprcific agent 
 pipeline {
-  agent {
-    label 'app-slave'
-  }
+  agent any
   stages {
-    stage ('buils') {
+    stage ('Frist stage') {
       steps {
-        echo "this pipeline set up for slave machine"
+        echo "printing the hostname where this stage will execute"
+        sh 'hostname  -i'
       }
     }
-    stage ('hostname') {
+    stage ('second stage') {
       steps {
+        echo "printing the hostname where this stage will exuecute"
         sh 'hostname -i'
       }
     }
