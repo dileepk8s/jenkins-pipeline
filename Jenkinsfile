@@ -1,24 +1,23 @@
-//this pipeling of testing salve
-// globel setting applicable for all in the pipeline 
+// basic env pipeline
 pipeline {
   agent any
   stages {
-    stage ('firststage') {
+    stage ('build') {
       steps {
-        echo "this stage should excute for master node are global lever"
-        sh 'hostname'
-      }
-    }
-    stage ('secondstage') {
-      //stage settings
-      agent {
-        label 'app-slave'
-      }
-      steps {
-        echo "This stage should be excute only slave node only"
+        echo "this is for globel level course"
         sh 'hostname -i'
       }
     }
-
+    stage ('secondstage') {
+      steps {
+        script {
+          def course = "k8s"
+          if (course == "k8s")
+          println ("thanks for enrolling  for ${course}")
+          else 
+          println ("Do join for ${course}")
+        }
+      }
+    }
   }
 }
