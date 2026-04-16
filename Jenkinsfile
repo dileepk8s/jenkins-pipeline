@@ -1,15 +1,17 @@
-/// this is first pipeline for SCM
+////thi pipeline for sprcific agent 
 pipeline {
-  agent any 
+  agent {
+    label 'app-slave'
+  }
   stages {
-    stage ('build') {
+    stage ('buils') {
       steps {
-        echo "this is first pipeline"
+        echo "this pipeline set up for slave machine"
       }
     }
-    stage ('devstage') {
+    stage ('hostname') {
       steps {
-        echo "this is dev stage"
+        sh 'hostname -i'
       }
     }
   }
