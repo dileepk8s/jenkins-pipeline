@@ -1,17 +1,24 @@
+//this pipeling of testing salve
+// globel setting applicable for all in the pipeline 
 pipeline {
   agent any
   stages {
-    stage ('Frist stage') {
+    stage ('firststage') {
       steps {
-        echo "printing the hostname where this stage will execute"
-        sh 'hostname  -i'
+        echo "this stage should excute for master node are global lever"
+        sh 'hostname'
       }
     }
-    stage ('second stage') {
+    stage ('secondstage') {
+      //stage settings
+      agent {
+        label 'app-slave'
+      }
       steps {
-        echo "printing the hostname where this stage will exuecute"
+        echo "This stage should be excute only slave node only"
         sh 'hostname -i'
       }
     }
+
   }
 }
