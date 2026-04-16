@@ -11,8 +11,8 @@ pipeline {
     stage ('secondstage') {
       steps {
         script {
-          def course = "k8s"
-          if (course == "Docker")
+          def course = "Docker"
+          if (course == "k8s")
           println ("thanks for enrolling  for ${course}")
           else 
           println ("Do join for ${course}")
