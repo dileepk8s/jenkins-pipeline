@@ -1,12 +1,16 @@
-// syntax 
-// Sample Pipeline
+/// this is first pipeline for SCM
 pipeline {
-    agent any
-    stages {
-        stage ('FirstStage') {
-            steps {
-                echo "First Pipleline midified by Dileep"
-            }
-        }
+  agent any 
+  stages {
+    stage ('build') {
+      steps {
+        echo "this is first pipeline"
+      }
     }
+    stage ('devstage') {
+      steps {
+        echo "this is dev stage"
+      }
+    }
+  }
 }
