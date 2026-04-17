@@ -1,14 +1,23 @@
+//mavne pipele en diffirent versions
 pipeline {
   agent any
   tools {
-    maven 'maven-3.8.9'
+    mavnen 'maven-3.8.9'
   }
   stages {
-    stage ('maven') {
+    stage ('build stage') {
       steps {
-        echo "this stage for maven version"
+        echo "testing the maven version in globel"
         sh 'mvn --version'
       }
     }
+    stage ('maven custom-stage'){
+      tools{
+        jdk 'open-jdk'
+      }
+    }
+    steps {
+      echo "this is custom java version"
+    } sh 'mvn --version'
   }
 }
