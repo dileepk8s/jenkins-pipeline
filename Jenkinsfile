@@ -15,9 +15,10 @@ pipeline {
       tools{
         jdk 'open-jdk'
       }
+      steps {
+        echo "this is custom java version"
+        sh 'mvn --version'
+      }
     }
-    steps {
-      echo "this is custom java version"
-    } sh 'mvn --version'
   }
 }
