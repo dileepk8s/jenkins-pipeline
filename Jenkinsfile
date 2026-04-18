@@ -11,7 +11,7 @@ pipeline {
         }
         stage ('custommaven') {
             tools{
-                jdk 'jdk-17'
+                jdk 'open-jdk'
             }
             steps{
                 echo "welcome to maven this is custom java section"
