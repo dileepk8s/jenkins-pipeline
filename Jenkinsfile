@@ -1,22 +1,23 @@
 pipeline {
-    agent any
-    tools {
-        maven 'maven-3.8.9'
+  agent any
+  tools {
+    mavnen 'maven-3.8.9'
+  }
+  stages {
+    stage ('build stage') {
+      steps {
+        echo "testing the maven version in globel"
+        sh 'mvn --version'
+      }
     }
-    stages {
-        stage ('mavendefault') {
-            steps {
-                echo "welcome to maven section, this is default java section"
-            }
-        }
-        stage ('custommaven') {
-            tools{
-                jdk 'jdk-17'
-            }
-            steps{
-                echo "welcome to maven this is custom java section"
-                sh 'mvn --version'
-            }
-        }
+    stage ('maven custom-stage'){
+      tools{
+        open-jdk 'jdk-17'
+      }
+      steps {
+        echo "this is custom java version"
+        sh 'mvn --version'
+      }
     }
+  }
 }
