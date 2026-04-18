@@ -11,7 +11,7 @@ pipeline {
       }
     }
     stage ('maven custom-stage'){
-      tools{
+      tools {
         open-jdk 'jdk-17'
       }
       steps {
