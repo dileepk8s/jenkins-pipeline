@@ -12,7 +12,7 @@ pipeline {
     }
     stage ('maven custom-stage'){
       tools {
-        open-jdk '/opt/jdk-17'
+        jdk 'open-jdk'
       }
       steps {
         echo "this is custom java version"
