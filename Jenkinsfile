@@ -1,24 +1,17 @@
-//mavne pipele en diffirent versions
 pipeline {
-  agent any
-  tools {
-    maven 'maven-3.8.9'
+  agent {
+    label 'app-slave'
   }
+  environment {
+    //key= value
+    name = "dileep"
+    course = "docker and k8s"
+  } 
   stages {
-    stage ('build stage') {
-      steps {
-        echo "testing the maven version in globel"
-        sh 'mvn --version'
-      }
-    }
-    stage ('maven custom-stage'){
-      tools{
-        jdk 'open-jdk'
-      }
-      steps {
-        echo "this is custom java version"
-        sh 'mvn --version'
-      }
+    stage ('build') {
+      echo "welcome to ${name}"
+      echo "you enrolled for ${course} course"
+      echo "${name} is certified in cka"
     }
   }
 }
