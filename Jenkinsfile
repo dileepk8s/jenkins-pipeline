@@ -9,9 +9,11 @@ pipeline {
   } 
   stages {
     stage ('build') {
+      steps {
       echo "welcome to ${name}"
       echo "you enrolled for ${course} course"
       echo "${name} is certified in cka"
+      }
     }
   }
 }
