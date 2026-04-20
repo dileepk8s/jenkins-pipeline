@@ -3,7 +3,7 @@ pipeline {
   label 'app-slave'
   }
   environment {
-    DEPLOY_TO = 'production'
+    DEPLOY_TO = 'production123'
   }
   stages {
     stage ('stage-1') {
