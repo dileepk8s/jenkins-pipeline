@@ -28,7 +28,7 @@ pipeline {
         echo "weilcome to ${name}"
         echo "your enrolled for ${course} course"
         echo "${name} certified in k8s"
-        echo "your certified in ${cloud} cloud"
+        echo "${name} certified in ${cloud} cloud"
       }
     }
   }
