@@ -10,7 +10,7 @@ pipeline {
       when {
         environment name: 'DEPLOY_TO' , value: 'production'
       }
-      stelps {
+      steps {
         echo "printing some data"
       }
     }
