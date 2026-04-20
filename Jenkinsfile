@@ -1,33 +1,19 @@
 pipeline {
   agent {
-    label  'app-slave'
+    label 'app-slave'
   }
   environment {
-    name = 'dileep'
-    course = 'k8s'
+    GIT_CREDS = credentials ('git_pat_creds') 
+    //username and passwd  ====> get stored in GIT_CREDS 
   }
   stages {
-    stage ('firt-stage') {
-      environment {
-        cloud = 'aws'
-      }
+    stage ('creds-test') {
       steps {
-        echo "welcome to ${name}"
-        echo "your enrolled for ${course} course"
-        echo "${name} certified in k8s"
-        echo "your certified in ${cloud}"
-      }
-    }
-    stage ('second-stage') {
-      environment {
-        name = 'john'
-        cloud = 'gcp'
-      }
-      steps {
-        echo "welcome to ${name}"
-        echo "your enrolled for ${course} course"
-        echo "${name} certified in cka"
-        echo "${name} certified in ${cloud}"
+        echo "****** printing credentials*******"
+        //how can we call the user name from GIT_CREDS
+        echo "*** username is ${GIT_CREDS_USR} ******"
+        // how can we call the password form the GIT_CREDSd
+        echo "******password is ${GIT_CREDS_PSW} *****"
       }
     }
   }
