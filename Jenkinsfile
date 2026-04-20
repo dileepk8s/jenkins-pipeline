@@ -1,19 +1,17 @@
 pipeline {
   agent {
-    label 'app-slave'
+  label 'app-slave'
   }
   environment {
-    GIT_CREDS = credentials ('git_pat_creds') 
-    //username and passwd  ====> get stored in GIT_CREDS 
+    DEPLOY_TO = 'production'
   }
   stages {
-    stage ('creds-test') {
-      steps {
-        echo "printing credentials"
-        //how can we call the user name from GIT_CREDS
-        echo "username is ${GIT_CREDS_USR}"
-        // how can we call the password form the GIT_CREDSd
-        echo "password is ${GIT_CREDS_PSW}"
+    stage ('stage-1') {
+      when {
+        environment name: 'DEPLOY_TO' , value: 'production'
+      }
+      stelps {
+        echo "printing some data"
       }
     }
   }
