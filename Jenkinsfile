@@ -8,7 +8,7 @@ pipeline {
         }
         stage('Example Deploy') {
             agent {
-                label "some-label"
+                label "app-slave"
             }
             when {
                 beforeAgent true
