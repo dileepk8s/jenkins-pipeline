@@ -1,22 +1,19 @@
+//using when conditions in pipeline
 pipeline {
-    agent any
-    tools {
-        maven 'maven-3.8.9'
+  agent {
+  label 'app-slave'
+  }
+  environment {
+    DEPLOY_TO = 'production'
+  }
+  stages {
+    stage ('stage-1') {
+      when {
+        environment name: 'DEPLOY_TO' , value: 'dev'
+      }
+      steps {
+        echo "printing some data"
+      }
     }
-    stages {
-        stage ('mavendefault') {
-            steps {
-                echo "welcome to maven section, this is default java section"
-            }
-        }
-        stage ('custommaven') {
-            tools{
-                jdk 'open-jdk'
-            }
-            steps{
-                echo "welcome to maven this is custom java section"
-                sh 'mvn --version'
-            }
-        }
-    }
+  }
 }
