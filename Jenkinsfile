@@ -8,15 +8,14 @@ pipeline {
         }
         stage('Example Deploy') {
             when {
-                beforeInput true
-                branch 'production'
+                beforeOptions true
+                branch 'testing'
             }
-            input {
-                message "Deploy to production?"
-                id "simple-input"
+            options {
+                lock label: 'testing-deploy-envs', quantity: 1, variable: 'deployEnv'
             }
             steps {
-                echo 'Deploying'
+                echo "Deploying to ${deployEnv}"
             }
         }
     }
