@@ -17,7 +17,7 @@ pipeline {
       input {
         message "Should we continue?"
         ok "Yes, we should."
-        submitter "alice,bob"
+        submitter "Dileep"
       }
       steps {
         echo "Hello, ${params.PERSON}, nice to meet you."
