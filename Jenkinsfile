@@ -1,18 +1,19 @@
-//using when conditions in pipeline
 pipeline {
   agent {
-  label 'app-slave'
+    label 'app-slave'
   }
   environment {
     DEPLOY_TO = 'production'
   }
   stages {
-    stage ('stage-1') {
-      when {
-        environment name: 'DEPLOY_TO' , value: 'production'
-      }
+    stage ('Deploy') {
       steps {
-        echo "printing some data"
+        echo "***Deploy to Dev environment****"
+      }
+    }
+    stage ('PedDeploy') {
+      steps {
+        echo "****Deploy to prod Environment*****"
       }
     }
   }
