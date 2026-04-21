@@ -1,20 +1,18 @@
 pipeline {
-  agent {
-    label 'app-slave'
-  }
-  environment {
-    DEPLOY_TO = 'production'
-  }
-  stages {
-    stage ('Deploy') {
-      steps {
-        echo "***Deploy to Dev environment****"
-      }
+    agent any
+    stages {
+        stage('Example Build') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+        stage('Example Deploy') {
+            when {
+                branch 'production'
+            }
+            steps {
+                echo 'Deploying'
+            }
+        }
     }
-    stage ('PedDeploy') {
-      steps {
-        echo "****Deploy to prod Environment*****"
-      }
-    }
-  }
 }
