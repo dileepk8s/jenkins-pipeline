@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent none
     stages {
         stage('Example Build') {
             steps {
@@ -7,10 +7,12 @@ pipeline {
             }
         }
         stage('Example Deploy') {
+            agent {
+                label "some-label"
+            }
             when {
-                expression {
-                    BRANCH_NAME ==~ /(production|staging)/
-                }
+                beforeAgent true
+                branch 'production'
             }
             steps {
                 echo 'Deploying'
