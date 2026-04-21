@@ -1,17 +1,17 @@
 pipeline {
-    agent none
+    agent any
     stages {
-        stage('Example Build') {
-            steps {
-                echo 'Hello World'
+        stage('Example') {
+            input {
+                message "Should we continue?"
+                ok "Yes, we should."
+                submitter "alice,bob"
+                parameters {
+                    string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
+                }
             }
-        }
-        stage('Example Deploy') {
-            when {
-                triggeredBy "TimerTrigger"
-            }
             steps {
-                echo 'Deploying'
+                echo "Hello, ${PERSON}, nice to meet you."
             }
         }
     }
