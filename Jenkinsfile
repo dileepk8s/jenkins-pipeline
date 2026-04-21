@@ -14,12 +14,12 @@ pipeline {
         parameters {
           string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
         }
+        steps {
+          echo "Hello, ${PERSON}, nice to meet you."
+        }
       }
     }
     stage('Example') {
-      steps {
-        echo "Hello, ${PERSON}, nice to meet you."
-      }
       when {
         branch 'production'
         environment name: 'DEPLOY_TO', value: 'production'
