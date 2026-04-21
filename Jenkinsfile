@@ -4,7 +4,7 @@ pipeline {
     parameters {
         string(name: 'ENV_NAME', defaultValue: 'dev', description: 'Environment to deploy')
         booleanParam(name: 'RUN_TESTS', defaultValue: true, description: 'Run test stage?')
-        choice(name: 'ACTION', choices: ['build', 'deploy'], description: 'Select action')
+        choice(name: 'ACTION', choices: ['build', 'deploy','Approve], description: 'Select action')
     }
 
     stages {
