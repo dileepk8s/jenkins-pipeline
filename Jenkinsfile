@@ -1,17 +1,16 @@
 pipeline {
     agent any
     stages {
-        stage('Example Build') {
+        stage('build') {
             steps {
-                echo 'Hello World'
-            }
-        }
-        stage('Example Deploy') {
-            when {
-                branch 'production'
-            }
-            steps {
-                echo 'Deploying'
+                script {
+                    def skipBuild=env.SKIP_BUILD
+                    if (skipBuild == null || skipBuild.isEmpty()) {
+                        echo 'starting build ...'
+                    } else {
+                        echo 'skipping build ...'
+                    }
+                }
             }
         }
     }
