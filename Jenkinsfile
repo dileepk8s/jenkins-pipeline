@@ -8,11 +8,10 @@ pipeline {
         }
         stage('Example Deploy') {
             when {
-                beforeOptions true
-                branch 'testing'
+                triggeredBy "TimerTrigger"
             }
             steps {
-                echo "Deploying to dileep"
+                echo 'Deploying'
             }
         }
     }
