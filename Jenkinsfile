@@ -9,7 +9,7 @@ pipeline {
     stage ('deploy-stage') {
       when {
         branch 'production'
-        enveronment name: 'DEPLOY_TO', value: 'production'
+        environment name: 'DEPLOY_TO', value: 'production'
       }
       steps {
         echo "deploying to prod env"
