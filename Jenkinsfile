@@ -7,12 +7,13 @@ pipeline {
             }
         }
         stage('Example Deploy') {
-            agent {
-                label "app-slave"
-            }
             when {
-                beforeAgent true
+                beforeInput true
                 branch 'production'
+            }
+            input {
+                message "Deploy to production?"
+                id "simple-input"
             }
             steps {
                 echo 'Deploying'
