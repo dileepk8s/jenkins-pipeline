@@ -2,37 +2,24 @@ pipeline {
   agent {
     label 'app-slave'
   }
-
   environment {
-    DEPLOY_TO = 'master'
+    DEPLOY_TO = 'production'
   }
-
-  parameters {
-    string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
-  }
-
   stages {
-
-    stage('deploy-stage') {
-      input {
-        message "Should we continue?"
-        ok "Yes, we should."
-        submitter "Dileep"
-      }
+    stage ('dev-stage') {
       steps {
-        echo "Hello, ${params.PERSON}, nice to meet you."
+        echo "deoplying to dev environment"
       }
     }
-
-    stage('Example') {
+    stage ('pro-stage') {
       when {
         allOf {
           branch 'production'
-          environment name: 'DEPLOY_TO', value: 'master'
+          envornment name: 'DEPLOY_TO' , value: 'production'
         }
       }
       steps {
-        echo "deploying to prod env"
+        echo "deploytin to pro evnironment"
       }
     }
 
