@@ -1,18 +1,19 @@
 pipeline {
-    agent any
-    stages {
-        stage('Example') {
-            input {
-                message "Should we continue?"
-                ok "Yes, we should."
-                submitter "alice,bob"
-                parameters {
-                    string(name: 'PERSON', defaultValue: 'Mr Dileep', description: 'Who should I say hello to?')
-                }
-            }
-            steps {
-                echo "Hello, ${PERSON}, nice to meet you."
-            }
-        }
+  agent {
+    label 'app-slave'
+  }
+  environment {
+    DEPLOY_TO = 'production'
+  }
+  stages {
+    stage ('deploy-stage') {
+      when {
+        branch 'production'
+        environment name: 'DEPLOY_TO', value: 'production'
+      }
+      steps {
+        echo "deploying to prod env"
+      }
     }
+  }
 }
