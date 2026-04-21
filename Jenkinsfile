@@ -1,3 +1,4 @@
+//using when conditions in pipeline
 pipeline {
   agent {
   label 'app-slave'
@@ -8,7 +9,7 @@ pipeline {
   stages {
     stage ('stage-1') {
       when {
-        environment name: 'DEPLOY_TO' , value: 'dev'
+        environment name: 'DEPLOY_TO' , value: 'production'
       }
       steps {
         echo "printing some data"
