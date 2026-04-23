@@ -1,75 +1,20 @@
 pipeline {
-    agent any
-
-    parameters {
-        string(name: 'ENV_NAME', defaultValue: 'dev', description: 'Environment to deploy')
-        booleanParam(name: 'RUN_TESTS', defaultValue: true, description: 'Run test stage?')
-        choice(name: 'ACTION', choices: ['build', 'deploy',], description: 'Select action')
+  agent {
+    label 'app-slave'
+  }
+  environment {
+    GIT_CREDS = credentials ('git_pat_creds') 
+    //username and passwd  ====> get stored in GIT_CREDS 
+  }
+  stages {
+    stage ('creds-test') {
+      steps {
+        echo "****** printing credentials*******"
+        //how can we call the user name from GIT_CREDS
+        echo "*** username is ${GIT_CREDS_USR} ******"
+        // how can we call the password form the GIT_CREDSd
+        echo "******password is ${GIT_CREDS_PSW} *****"
+      }
     }
-
-    stages {
-        stage('Build') {
-            when {
-                expression { params.ACTION == 'build' || params.ACTION == 'deploy' }
-            }
-            steps {
-                echo "Building application for ${params.ENV_NAME}"
-            }
-        }
-
-        stage('Test') {
-            when {
-                expression { params.RUN_TESTS == true }
-            }
-            steps {
-                echo "Running tests..."
-
-                script {
-                    if (params.ENV_NAME == 'prod') {
-                        echo "Running extra production checks"
-                    } else {
-                        echo "Running normal test checks"
-                    }
-                }
-            }
-        }
-
-        stage('Approval') {
-            when {
-                expression { params.ACTION == 'deploy' && params.ENV_NAME == 'prod' }
-            }
-            steps {
-                input message: 'Deploy to production?', ok: 'Approve'
-            }
-        }
-
-        stage('Deploy') {
-            when {
-                expression { params.ACTION == 'deploy' }
-            }
-            steps {
-                script {
-                    if (params.ENV_NAME == 'dev') {
-                        echo "Deploying to DEV"
-                    } else if (params.ENV_NAME == 'qa') {
-                        echo "Deploying to QA"
-                    } else {
-                        echo "Deploying to PROD"
-                    }
-                }
-            }
-        }
-    }
-
-    post {
-        always {
-            echo "Pipeline finished"
-        }
-        success {
-            echo "Pipeline succeeded"
-        }
-        failure {
-            echo "Pipeline failed"
-        }
-    }
+  }
 }
